@@ -29,6 +29,12 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
         super.viewDidLoad()
         
         self.title = "SwiftGG"
+        
+        // 自动 push 第一行
+        let data = self.getContentFromDevice(key)
+        if data.count > 0 {
+            pushArticlesVC(data[0].title, link: data[0].title)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,15 +85,22 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // deselect
+        pushArticlesVC(tableData[indexPath.row].title, link: tableData[indexPath.row].link)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    
+    
+    // MARK: - 自动 Push
+    func pushArticlesVC(title:String, link:String) {
         // set link
-        ArticlesTableVC.archiveTitle = tableData[indexPath.row].title
-        ArticlesTableVC.archiveLink = tableData[indexPath.row].link
+        ArticlesTableVC.archiveTitle = title
+        ArticlesTableVC.archiveLink = link
         // push
         guard let navi = self.navigationController else { return }
         guard let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ArticlesTableVC") else { return }
         navi.pushViewController(vc, animated: true)
-        // deselect
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
 }
