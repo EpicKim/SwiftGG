@@ -21,7 +21,7 @@ class FakeSafari: UIViewController {
         super.viewDidLoad()
         
         // webview
-        webview.frame = self.view.frame
+        webview.expandToFullView()
         webview.loadRequest(NSURLRequest(URL: FakeSafari.url))
         view.addSubview(webview)
         
@@ -38,7 +38,7 @@ class FakeSafari: UIViewController {
     
     // MARK: - Func
     func screenRotate(notification:NSNotification) {
-        webview.frame = self.view.frame
+        webview.expandToFullView()
     }
 
     

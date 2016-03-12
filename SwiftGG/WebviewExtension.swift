@@ -7,8 +7,28 @@
 //
 
 import UIKit
+import WebKit
 
-// JS 抓取链接
+
+// MARK: -  用于设定 View 的大小为屏幕大小
+protocol ExpandableView {
+    func expandToFullView()
+}
+
+private func expand(view:UIView) {
+    view.frame = UIScreen.mainScreen().bounds
+}
+
+extension WKWebView: ExpandableView {
+    func expandToFullView() { expand(self) }
+}
+
+extension UIWebView: ExpandableView {
+    func expandToFullView() { expand(self) }
+}
+
+
+// MARK: -  用于使用 JS 抓取网页
 extension UIWebView {
     
     // 抓取归档链接
