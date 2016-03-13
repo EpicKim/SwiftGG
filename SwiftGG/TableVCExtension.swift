@@ -9,7 +9,23 @@
 import UIKit
 
 extension UITableViewController {
-
+    
+    
+    // 对比新旧数据，决定是否刷新页面
+    func dealUI_byComparingData(
+        tableview:UITableView,
+        oldData:[CellDataModel], newData:[CellDataModel], key:String) {
+            
+            if oldData != newData {
+                // 发现数据有更新
+                tableview.reloadData()
+                self.setContentToDevice(newData, key: key)
+            }else {
+                // Do Nothing
+                // 没有新数据，就不消耗资源，不刷新页面
+            }
+    }
+    
     // 存储数据到本地
     func setContentToDevice (content:[CellDataModel], key:String) {
         
@@ -23,7 +39,7 @@ extension UITableViewController {
     }
     
     // 从本地获取数据
-    func getContentFromDevice (key:String) -> [CellDataModel] {
+    func getContentFromDevice (key key:String) -> [CellDataModel] {
         
         let pathPrefix = NSSearchPathForDirectoriesInDomains(
             NSSearchPathDirectory.DocumentDirectory,

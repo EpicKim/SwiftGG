@@ -28,6 +28,7 @@ extension UIWebView: ExpandableView {
 }
 
 
+
 // MARK: -  用于使用 JS 抓取网页
 extension UIWebView {
     
@@ -67,14 +68,6 @@ extension UIWebView {
             ($0 != "undefined") && ($0 != "")
         })
         return titleArr
-    }
-    
-    
-    // 根据当前数据情况，决定是否应该停止加载网页
-    func autoStopLoading(byData arr:[AnyObject]) {
-        if arr.count != 0 {
-            self.stopLoading()
-        }
     }
     
 }

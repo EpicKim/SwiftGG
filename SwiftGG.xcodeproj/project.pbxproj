@@ -15,7 +15,8 @@
 		5F018E141C91C8E50052538E /* MainTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F018E131C91C8E50052538E /* MainTableVC.swift */; };
 		5F018E161C91CAE60052538E /* ArticlesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F018E151C91CAE60052538E /* ArticlesTableVC.swift */; };
 		5F018E1D1C91D1EB0052538E /* CellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F018E1C1C91D1EB0052538E /* CellDataModel.swift */; };
-		5F56E2C11C92636900A607DE /* FakeSafari.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F56E2C01C92636900A607DE /* FakeSafari.swift */; };
+		5F29FE871C95A83500AC83C9 /* DataArrExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F29FE861C95A83500AC83C9 /* DataArrExtension.swift */; };
+		5F56E2C11C92636900A607DE /* FakeSafariVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F56E2C01C92636900A607DE /* FakeSafariVC.swift */; };
 		5FDCFBBE1C925DCF002C2CBA /* TableVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDCFBBD1C925DCF002C2CBA /* TableVCExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +31,8 @@
 		5F018E131C91C8E50052538E /* MainTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableVC.swift; sourceTree = "<group>"; };
 		5F018E151C91CAE60052538E /* ArticlesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesTableVC.swift; sourceTree = "<group>"; };
 		5F018E1C1C91D1EB0052538E /* CellDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDataModel.swift; sourceTree = "<group>"; };
-		5F56E2C01C92636900A607DE /* FakeSafari.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSafari.swift; sourceTree = "<group>"; };
+		5F29FE861C95A83500AC83C9 /* DataArrExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataArrExtension.swift; sourceTree = "<group>"; };
+		5F56E2C01C92636900A607DE /* FakeSafariVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSafariVC.swift; sourceTree = "<group>"; };
 		5FDCFBBD1C925DCF002C2CBA /* TableVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVCExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +83,7 @@
 			children = (
 				5F018E131C91C8E50052538E /* MainTableVC.swift */,
 				5F018E151C91CAE60052538E /* ArticlesTableVC.swift */,
-				5F56E2C01C92636900A607DE /* FakeSafari.swift */,
+				5F56E2C01C92636900A607DE /* FakeSafariVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -89,6 +91,7 @@
 		5F018E181C91CAFD0052538E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				5F29FE861C95A83500AC83C9 /* DataArrExtension.swift */,
 				5F018E111C91C8910052538E /* WebviewExtension.swift */,
 				5FDCFBBD1C925DCF002C2CBA /* TableVCExtension.swift */,
 			);
@@ -176,10 +179,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F018E161C91CAE60052538E /* ArticlesTableVC.swift in Sources */,
-				5F56E2C11C92636900A607DE /* FakeSafari.swift in Sources */,
+				5F56E2C11C92636900A607DE /* FakeSafariVC.swift in Sources */,
 				5FDCFBBE1C925DCF002C2CBA /* TableVCExtension.swift in Sources */,
 				5F018E121C91C8910052538E /* WebviewExtension.swift in Sources */,
 				5F018E141C91C8E50052538E /* MainTableVC.swift in Sources */,
+				5F29FE871C95A83500AC83C9 /* DataArrExtension.swift in Sources */,
 				5F018E1D1C91D1EB0052538E /* CellDataModel.swift in Sources */,
 				5F018E001C91BB080052538E /* AppDelegate.swift in Sources */,
 			);

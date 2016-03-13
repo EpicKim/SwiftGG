@@ -14,17 +14,19 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
     let webview = UIWebView()
     var tableData = [CellDataModel]()
     
-    static var archiveTitle:String! // 页面 title
-    static var archiveLink:String! // 初始化这个页面时，需要访问的网页
+    static var pageTitle:String! // 页面 title
+    static var pageLink:String! // 初始化这个页面时，需要访问的网页
+    
+    private func getKey() -> String { return ArticlesTableVC.pageTitle }
     
     
     // MARK: - Main
     override func viewWillAppear(animated: Bool) {
         // 加载本地数据
-        tableData = self.getContentFromDevice(ArticlesTableVC.archiveTitle)
+        tableData = self.getContentFromDevice(key: self.getKey())
         tableView.reloadData()
         // 加载网页
-        guard let url = NSURL(string: ArticlesTableVC.archiveLink) else { return }
+        guard let url = NSURL(string: ArticlesTableVC.pageLink) else { return }
         webview.loadRequest(NSURLRequest(URL: url))
         webview.delegate = self
     }
@@ -32,7 +34,7 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = ArticlesTableVC.archiveTitle
+        self.title = ArticlesTableVC.pageTitle
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,25 +45,16 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
     
     // MARK: - Web View
     func webViewDidFinishLoad(webView: UIWebView) {
-        // 抓取链接 - 列表根据链接刷新
+        
+        // 从 webview 抓取内容
         let titles = webview.getArticleTitles()
         let links = webview.getArticleLinks()
-        
-        if titles.count == links.count {
-            tableData.removeAll()
-            for var i = 0; i < titles.count; i++ {
-                let cellDataObj = CellDataModel(
-                    title: titles[i], link:
-                    links[i])
-                tableData.append(cellDataObj)
-            }
-            // 加载数据
-            tableView.reloadData()
-            // 存储数据
-            self.setContentToDevice(tableData, key:ArticlesTableVC.archiveTitle)
-            // webview 停止加载
-            webview.autoStopLoading(byData: tableData)
-        }
+        // 处理抓取到的内容
+        tableData.setByData(titles: titles, links: links)
+        // 根据内容刷新页面
+        self.dealUI_byComparingData(tableView,
+            oldData: self.getContentFromDevice(key: self.getKey()),
+            newData: tableData, key: self.getKey())
     }
     
     
@@ -89,8 +82,7 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
             let safari = SFSafariViewController(URL: url)
             self.presentViewController(safari, animated: true, completion: nil)
         } else {
-            let safari = FakeSafari()
-            FakeSafari.url = url
+            let safari = FakeSafariViewController(URL: url)
             guard let navi = self.navigationController else { return }
             navi.pushViewController(safari, animated: true)
         }

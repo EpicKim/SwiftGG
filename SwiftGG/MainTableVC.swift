@@ -14,10 +14,11 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
     var tableData = [CellDataModel]()
     let key = "Main"
     
+    
     // MARK: - Main
     override func viewWillAppear(animated: Bool) {
         // 加载本地数据
-        tableData = self.getContentFromDevice(key)
+        tableData = self.getContentFromDevice(key:key)
         tableView.reloadData()
         // 加载网页
         guard let url = NSURL(string: "http://swift.gg/archives/") else { return }
@@ -31,9 +32,11 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
         self.title = "SwiftGG"
         
         // 自动 push 第一行
-        let data = self.getContentFromDevice(key)
+        let data = self.getContentFromDevice(key: key)
         if data.count > 0 {
-            pushArticlesVC(data[0].title, link: data[0].title)
+            pushArticlesVC(
+                title: data[0].title,
+                link: data[0].link)
         }
     }
     
@@ -45,25 +48,15 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
     
     // MARK: - Web View
     func webViewDidFinishLoad(webView: UIWebView) {
-        // 抓取链接 - 列表根据链接刷新
+        // 从 webview 抓取内容
         let titles = webview.getArchiveTitles()
         let links = webview.getArchiveLinks()
-        
-        if titles.count == links.count {
-            tableData.removeAll()
-            for var i = 0; i < titles.count; i++ {
-                let cellDataObj = CellDataModel(
-                    title: titles[i], link:
-                    links[i])
-                tableData.append(cellDataObj)
-            }
-            // 加载数据
-            tableView.reloadData()
-            // 存储数据
-            self.setContentToDevice(tableData, key:key)
-            // webview 停止加载
-            webview.autoStopLoading(byData: tableData)
-        }
+        // 处理抓取到的内容
+        tableData.setByData(titles: titles, links: links)
+        // 根据内容刷新页面
+        self.dealUI_byComparingData(tableView,
+            oldData: self.getContentFromDevice(key: key),
+            newData: tableData, key: key)
     }
 
     
@@ -86,17 +79,19 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // deselect
-        pushArticlesVC(tableData[indexPath.row].title, link: tableData[indexPath.row].link)
+        pushArticlesVC(
+            title: tableData[indexPath.row].title,
+            link: tableData[indexPath.row].link)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     
     
     // MARK: - 自动 Push
-    func pushArticlesVC(title:String, link:String) {
-        // set link
-        ArticlesTableVC.archiveTitle = title
-        ArticlesTableVC.archiveLink = link
+    func pushArticlesVC(title title:String, link:String) {
+        // set title & link
+        ArticlesTableVC.pageTitle = title
+        ArticlesTableVC.pageLink = link
         // push
         guard let navi = self.navigationController else { return }
         guard let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ArticlesTableVC") else { return }

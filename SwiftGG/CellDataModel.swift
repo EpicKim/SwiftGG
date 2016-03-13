@@ -29,3 +29,9 @@ class CellDataModel: NSObject {
         self.link = aDecoder.decodeObjectForKey("link") as! String
     }
 }
+
+
+
+
+
+
