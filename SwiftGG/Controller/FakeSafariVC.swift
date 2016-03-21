@@ -17,7 +17,7 @@ class FakeSafariViewController: UIViewController {
     
     
     // MARK: - Init
-    convenience init( URL: NSURL ) {
+    convenience init (URL: NSURL) {
         self.init()
         self.url = URL
     }

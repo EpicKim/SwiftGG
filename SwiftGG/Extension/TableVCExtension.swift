@@ -10,7 +10,6 @@ import UIKit
 
 extension UITableViewController {
     
-    
     // 对比新旧数据，决定是否刷新页面
     func dealUI_byComparingData(
         tableview:UITableView,

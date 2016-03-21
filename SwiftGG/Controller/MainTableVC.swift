@@ -17,9 +17,11 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
     
     // MARK: - Main
     override func viewWillAppear(animated: Bool) {
+        
         // 加载本地数据
         tableData = self.getContentFromDevice(key:key)
         tableView.reloadData()
+        
         // 加载网页
         guard let url = NSURL(string: "http://swift.gg/archives/") else { return }
         webview.loadRequest(NSURLRequest(URL: url))

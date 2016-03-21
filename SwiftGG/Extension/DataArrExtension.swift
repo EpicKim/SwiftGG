@@ -6,9 +6,6 @@
 //  Copyright © 2016年 徐开源. All rights reserved.
 //
 
-import Foundation
-
-
 extension Array where Element:CellDataModel {
     
     mutating func setByData(titles titles:[String], links:[String]) {

@@ -33,7 +33,7 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.title = ArticlesTableVC.pageTitle
     }
     
@@ -44,8 +44,14 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
     
     
     // MARK: - Web View
+    func webViewDidStartLoad(webView: UIWebView) {
+        // title 提示
+        self.title = "内容刷新中"
+    }
+    
     func webViewDidFinishLoad(webView: UIWebView) {
-        
+        // title 提示
+        self.title = ArticlesTableVC.pageTitle
         // 从 webview 抓取内容
         let titles = webview.getArticleTitles()
         let links = webview.getArticleLinks()
