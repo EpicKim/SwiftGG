@@ -34,7 +34,9 @@ class FakeSafariViewController: UIViewController {
         view.addSubview(webview)
         
         // 屏幕旋转监听
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "screenRotate:",
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: #selector(screenRotate),
             name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
 
@@ -42,7 +44,7 @@ class FakeSafariViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func screenRotate(notification:NSNotification) {
+    func screenRotate() {
         webview.expandToFullView()
     }
 

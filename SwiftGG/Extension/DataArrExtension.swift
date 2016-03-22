@@ -15,7 +15,7 @@ extension Array where Element:CellDataModel {
             // 清空
             self.removeAll()
             // 填值
-            for var i = 0; i < titles.count; i++ {
+            for i in 0 ..< titles.count {
                 if let cellDataObj = CellDataModel(
                     title: titles[i],
                     link: links[i]) as? Element {
