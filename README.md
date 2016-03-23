@@ -18,5 +18,5 @@ App 已上架 AppStore，你可以[点击下载安装](https://itunes.apple.com/
 <br>知乎 - https://www.zhihu.com/people/x_os
 <br>邮箱 - wm-ing@qq.com
 
-![ScreenShot1](http://i.imgur.com/FXo6OSC.jpg)
-![ScreenShot2](http://i.imgur.com/JgMrgGP.jpg)
+![ScreenShot1](http://i.imgur.com/UyNmSJ3.png)
+![ScreenShot2](http://i.imgur.com/bKmgUA6.png)
