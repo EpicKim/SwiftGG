@@ -1,5 +1,9 @@
 # SwiftGG
 
+####【App Store】
+App 已上架 AppStore，你可以[点击下载安装](https://itunes.apple.com/app/id1092408981)。
+<br>App Store 版本的 App 可能尚未同步这个项目在 Github 的最新代码，所以推荐您自行下载代码编译。
+
 ####【这是什么】
 [SwiftGG](http://swift.gg) 的 iOS 客户端，简单收纳了网站里面的归档文章，方便大家浏览。
 
