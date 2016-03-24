@@ -28,13 +28,13 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
         // 加载网页
         guard let url = NSURL(string: ArticlesTableVC.pageLink) else { return }
         webview.loadRequest(NSURLRequest(URL: url))
-        webview.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = ArticlesTableVC.pageTitle
+        webview.delegate = self
     }
     
     override func didReceiveMemoryWarning() {

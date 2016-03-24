@@ -13,8 +13,9 @@ import WebKit
 class FakeSafariViewController: UIViewController {
     
     var url:NSURL!
-    let webview = WKWebView()
-    
+    let webView = WKWebView()
+    let progressView = UIProgressView()
+    let progressKeyPath = "estimatedProgress"
     
     // MARK: - Init
     convenience init (URL: NSURL) {
@@ -28,10 +29,15 @@ class FakeSafariViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // webview
-        webview.expandToFullView()
-        webview.loadRequest(NSURLRequest(URL: url))
-        view.addSubview(webview)
+        // webView
+        webView.expandToFullView()
+        webView.loadRequest(NSURLRequest(URL: url))
+        webView.addObserver(self, forKeyPath: progressKeyPath, options: .New, context: nil) // 加载进度监听
+        view.addSubview(webView)
+        
+        // progressView
+        progressView.setFrameBy(self)
+        webView.addSubview(progressView)
         
         // 屏幕旋转监听
         NSNotificationCenter.defaultCenter().addObserver(
@@ -39,15 +45,49 @@ class FakeSafariViewController: UIViewController {
             selector: #selector(screenRotate),
             name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        webView.removeObserver(self, forKeyPath: progressKeyPath)
+    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    
+    // MARK: - KVO
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == progressKeyPath {
+            
+            // 防止进度条突变
+            UIView.animateWithDuration(0.5, animations: {
+                self.progressView.setProgress(
+                    Float(self.webView.estimatedProgress),
+                    animated: true)
+            })
+            // 渐隐
+            if webView.estimatedProgress == 1 {
+                UIView.animateWithDuration(1, animations: {
+                    self.progressView.alpha = 0
+                })
+            }
+        }
     }
     
     func screenRotate() {
-        webview.expandToFullView()
+        webView.expandToFullView()
+        // 保证 progressView 不错位
+        progressView.setFrameBy(self)
     }
-
     
 }
+
+
+
+extension UIProgressView {
+    func setFrameBy (vc:UIViewController) {
+        guard let barFrame = vc.navigationController?.navigationBar.frame else { return }
+        let barHeight = barFrame.height + barFrame.origin.y
+        self.frame = CGRectMake(0, barHeight, vc.view.frame.width, 2)
+    }
+}
+
+
 

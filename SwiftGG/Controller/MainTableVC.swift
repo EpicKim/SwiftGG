@@ -25,13 +25,13 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
         // 加载网页
         guard let url = NSURL(string: "http://swift.gg/archives/") else { return }
         webview.loadRequest(NSURLRequest(URL: url))
-        webview.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "SwiftGG"
+        webview.delegate = self
         
         // 自动 push 第一行
         let data = self.getContentFromDevice(key: key)
