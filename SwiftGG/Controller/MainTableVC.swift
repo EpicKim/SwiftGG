@@ -91,12 +91,14 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
     
     // MARK: - 自动 Push
     func pushArticlesVC(title title:String, link:String) {
-        // set title & link
-        ArticlesTableVC.pageTitle = title
-        ArticlesTableVC.pageLink = link
-        // push
+        // get vc
         guard let navi = self.navigationController else { return }
-        guard let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ArticlesTableVC") else { return }
+        guard let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ArticlesTableVC") as? ArticlesTableVC
+            else { return }
+        // set value
+        vc.title_origin = title
+        vc.link = link
+        // push
         navi.pushViewController(vc, animated: true)
     }
     

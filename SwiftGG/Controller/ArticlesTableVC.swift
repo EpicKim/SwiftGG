@@ -14,10 +14,11 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
     let webview = UIWebView()
     var tableData = [CellDataModel]()
     
-    static var pageTitle:String! // 页面 title
-    static var pageLink:String! // 初始化这个页面时，需要访问的网页
+    var title_origin: String = "" // 这个页面的 title 应有的值，名称区别于 self.title
+    var link: String = "" // 这个页面需要访问的链接，据此来获取内容
     
-    private func getKey() -> String { return ArticlesTableVC.pageTitle }
+    private func getKey() -> String { return self.title_origin }
+    
     
     
     // MARK: - Main
@@ -26,14 +27,14 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
         tableData = self.getContentFromDevice(key: self.getKey())
         tableView.reloadData()
         // 加载网页
-        guard let url = NSURL(string: ArticlesTableVC.pageLink) else { return }
+        guard let url = NSURL(string: link) else { return }
         webview.loadRequest(NSURLRequest(URL: url))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = ArticlesTableVC.pageTitle
+        title = title_origin
         webview.delegate = self
     }
     
@@ -46,12 +47,12 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
     // MARK: - Web View
     func webViewDidStartLoad(webView: UIWebView) {
         // title 提示
-        self.title = "内容刷新中"
+        title = "内容刷新中"
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
         // title 提示
-        self.title = ArticlesTableVC.pageTitle
+        title = title_origin
         // 从 webview 抓取内容
         let titles = webview.getArticleTitles()
         let links = webview.getArticleLinks()
