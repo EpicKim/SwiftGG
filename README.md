@@ -12,11 +12,7 @@ App 已上架 AppStore，你可以[点击下载安装](https://itunes.apple.com/
 
 ####【关于我】
 一名大三学生，目前在重庆大学读书，兼做 iOS 独立开发者，正在找工作 ：）
-<br>AppStore 作品 - https://itunes.apple.com/developer/id988271193
-<br>博客 - http://www.jianshu.com/users/4bb8c9a72ee9/latest_articles
-<br>微博 - http://weibo.com/p/1005053559103571/home
-<br>知乎 - https://www.zhihu.com/people/x_os
-<br>邮箱 - wm-ing@qq.com
+<br>[点击访问我的博客](http://kyxu.tech)
 
 ![ScreenShot1](http://i.imgur.com/UyNmSJ3.png)
 ![ScreenShot2](http://i.imgur.com/bKmgUA6.png)
