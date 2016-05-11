@@ -18,7 +18,6 @@
 		5FE2BE281C965C09001F961E /* TableVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE201C965C09001F961E /* TableVCExtension.swift */; };
 		5FE2BE291C965C09001F961E /* WebviewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE211C965C09001F961E /* WebviewExtension.swift */; };
 		5FE2BE2A1C965C09001F961E /* CellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE231C965C09001F961E /* CellDataModel.swift */; };
-		5FE2BE391C966124001F961E /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE381C966124001F961E /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +34,6 @@
 		5FE2BE201C965C09001F961E /* TableVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVCExtension.swift; sourceTree = "<group>"; };
 		5FE2BE211C965C09001F961E /* WebviewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebviewExtension.swift; sourceTree = "<group>"; };
 		5FE2BE231C965C09001F961E /* CellDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDataModel.swift; sourceTree = "<group>"; };
-		5FE2BE381C966124001F961E /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +91,6 @@
 		5FE2BE1E1C965C09001F961E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				5FE2BE381C966124001F961E /* UIColorExtension.swift */,
 				5FE2BE1F1C965C09001F961E /* DataArrExtension.swift */,
 				5FE2BE211C965C09001F961E /* WebviewExtension.swift */,
 				5FE2BE201C965C09001F961E /* TableVCExtension.swift */,
@@ -183,7 +180,6 @@
 			files = (
 				5FE2BE241C965C09001F961E /* ArticlesTableVC.swift in Sources */,
 				5FE2BE2A1C965C09001F961E /* CellDataModel.swift in Sources */,
-				5FE2BE391C966124001F961E /* UIColorExtension.swift in Sources */,
 				5FE2BE281C965C09001F961E /* TableVCExtension.swift in Sources */,
 				5F018E001C91BB080052538E /* AppDelegate.swift in Sources */,
 				5FE2BE261C965C09001F961E /* MainTableVC.swift in Sources */,

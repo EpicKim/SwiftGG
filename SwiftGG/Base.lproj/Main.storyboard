@@ -58,11 +58,12 @@
                             <outlet property="delegate" destination="84U-GN-jPM" id="n76-iJ-pPf"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="FOQ-U9-Dep"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XdP-bN-BC1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1456" y="417"/>
+            <point key="canvasLocation" x="1440" y="417"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Edt-40-wCe">

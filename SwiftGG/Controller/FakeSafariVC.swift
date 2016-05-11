@@ -31,6 +31,7 @@ class FakeSafariViewController: UIViewController {
         
         // webView
         webView.expandToFullView()
+        webView.frame = view.frame
         webView.loadRequest(NSURLRequest(URL: url))
         webView.addObserver(self, forKeyPath: progressKeyPath, options: .New, context: nil) // 加载进度监听
         view.addSubview(webView)

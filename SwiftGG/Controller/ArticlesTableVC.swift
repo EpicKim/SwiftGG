@@ -27,8 +27,7 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
         tableData = self.getContentFromDevice(key: self.getKey())
         tableView.reloadData()
         // 加载网页
-        guard let url = NSURL(string: link) else { return }
-        webview.loadRequest(NSURLRequest(URL: url))
+        requestContent()
     }
     
     override func viewDidLoad() {
@@ -36,13 +35,15 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
 
         title = title_origin
         webview.delegate = self
+        // 导航栏加入刷新按钮
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .Refresh, target: self, action: #selector(requestContent))
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func requestContent() {
+        guard let url = NSURL(string: link) else { return }
+        webview.loadRequest(NSURLRequest(URL: url))
     }
-    
-    
     
     // MARK: - Web View
     func webViewDidStartLoad(webView: UIWebView) {
