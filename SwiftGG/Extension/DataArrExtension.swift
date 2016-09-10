@@ -8,7 +8,7 @@
 
 extension Array where Element:CellDataModel {
     
-    mutating func setByData(titles titles:[String], links:[String]) {
+    mutating func setByData(titles:[String], links:[String]) {
         
         // 保证链接与标题数量一致
         if titles.count == links.count {

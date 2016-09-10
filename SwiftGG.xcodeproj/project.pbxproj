@@ -7,17 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F018E001C91BB080052538E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F018DFF1C91BB080052538E /* AppDelegate.swift */; };
 		5F018E051C91BB080052538E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F018E031C91BB080052538E /* Main.storyboard */; };
 		5F018E071C91BB080052538E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F018E061C91BB080052538E /* Assets.xcassets */; };
 		5F018E0A1C91BB080052538E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F018E081C91BB080052538E /* LaunchScreen.storyboard */; };
-		5FE2BE241C965C09001F961E /* ArticlesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE1B1C965C09001F961E /* ArticlesTableVC.swift */; };
-		5FE2BE251C965C09001F961E /* FakeSafariVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE1C1C965C09001F961E /* FakeSafariVC.swift */; };
-		5FE2BE261C965C09001F961E /* MainTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE1D1C965C09001F961E /* MainTableVC.swift */; };
-		5FE2BE271C965C09001F961E /* DataArrExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE1F1C965C09001F961E /* DataArrExtension.swift */; };
-		5FE2BE281C965C09001F961E /* TableVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE201C965C09001F961E /* TableVCExtension.swift */; };
-		5FE2BE291C965C09001F961E /* WebviewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE211C965C09001F961E /* WebviewExtension.swift */; };
-		5FE2BE2A1C965C09001F961E /* CellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2BE231C965C09001F961E /* CellDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,13 +19,13 @@
 		5F018E061C91BB080052538E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F018E091C91BB080052538E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F018E0B1C91BB080052538E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FE2BE1B1C965C09001F961E /* ArticlesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesTableVC.swift; sourceTree = "<group>"; };
-		5FE2BE1C1C965C09001F961E /* FakeSafariVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSafariVC.swift; sourceTree = "<group>"; };
-		5FE2BE1D1C965C09001F961E /* MainTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableVC.swift; sourceTree = "<group>"; };
-		5FE2BE1F1C965C09001F961E /* DataArrExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataArrExtension.swift; sourceTree = "<group>"; };
-		5FE2BE201C965C09001F961E /* TableVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVCExtension.swift; sourceTree = "<group>"; };
-		5FE2BE211C965C09001F961E /* WebviewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebviewExtension.swift; sourceTree = "<group>"; };
-		5FE2BE231C965C09001F961E /* CellDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDataModel.swift; sourceTree = "<group>"; };
+		5F01F6411D83AD22009D33F1 /* ArticlesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesTableVC.swift; sourceTree = "<group>"; };
+		5F01F6421D83AD22009D33F1 /* FakeSafariVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSafariVC.swift; sourceTree = "<group>"; };
+		5F01F6431D83AD22009D33F1 /* MainTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableVC.swift; sourceTree = "<group>"; };
+		5F01F6451D83AD22009D33F1 /* DataArrExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataArrExtension.swift; sourceTree = "<group>"; };
+		5F01F6461D83AD22009D33F1 /* TableVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVCExtension.swift; sourceTree = "<group>"; };
+		5F01F6471D83AD22009D33F1 /* WebviewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebviewExtension.swift; sourceTree = "<group>"; };
+		5F01F6491D83AD22009D33F1 /* CellDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,9 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				5F018DFF1C91BB080052538E /* AppDelegate.swift */,
-				5FE2BE221C965C09001F961E /* Model */,
-				5FE2BE1E1C965C09001F961E /* Extension */,
-				5FE2BE1A1C965C09001F961E /* Controller */,
+				5F01F6481D83AD22009D33F1 /* Model */,
+				5F01F6441D83AD22009D33F1 /* Extension */,
+				5F01F6401D83AD22009D33F1 /* Controller */,
 				5F018E061C91BB080052538E /* Assets.xcassets */,
 				5F018E081C91BB080052538E /* LaunchScreen.storyboard */,
 				5F018E031C91BB080052538E /* Main.storyboard */,
@@ -78,30 +70,30 @@
 			path = SwiftGG;
 			sourceTree = "<group>";
 		};
-		5FE2BE1A1C965C09001F961E /* Controller */ = {
+		5F01F6401D83AD22009D33F1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5FE2BE1D1C965C09001F961E /* MainTableVC.swift */,
-				5FE2BE1B1C965C09001F961E /* ArticlesTableVC.swift */,
-				5FE2BE1C1C965C09001F961E /* FakeSafariVC.swift */,
+				5F01F6411D83AD22009D33F1 /* ArticlesTableVC.swift */,
+				5F01F6421D83AD22009D33F1 /* FakeSafariVC.swift */,
+				5F01F6431D83AD22009D33F1 /* MainTableVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5FE2BE1E1C965C09001F961E /* Extension */ = {
+		5F01F6441D83AD22009D33F1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				5FE2BE1F1C965C09001F961E /* DataArrExtension.swift */,
-				5FE2BE211C965C09001F961E /* WebviewExtension.swift */,
-				5FE2BE201C965C09001F961E /* TableVCExtension.swift */,
+				5F01F6451D83AD22009D33F1 /* DataArrExtension.swift */,
+				5F01F6461D83AD22009D33F1 /* TableVCExtension.swift */,
+				5F01F6471D83AD22009D33F1 /* WebviewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		5FE2BE221C965C09001F961E /* Model */ = {
+		5F01F6481D83AD22009D33F1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5FE2BE231C965C09001F961E /* CellDataModel.swift */,
+				5F01F6491D83AD22009D33F1 /* CellDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -133,12 +125,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "徐开源";
 				TargetAttributes = {
 					5F018DFB1C91BB080052538E = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = U9EXFUUUT3;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -178,14 +172,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FE2BE241C965C09001F961E /* ArticlesTableVC.swift in Sources */,
-				5FE2BE2A1C965C09001F961E /* CellDataModel.swift in Sources */,
-				5FE2BE281C965C09001F961E /* TableVCExtension.swift in Sources */,
-				5F018E001C91BB080052538E /* AppDelegate.swift in Sources */,
-				5FE2BE261C965C09001F961E /* MainTableVC.swift in Sources */,
-				5FE2BE271C965C09001F961E /* DataArrExtension.swift in Sources */,
-				5FE2BE291C965C09001F961E /* WebviewExtension.swift in Sources */,
-				5FE2BE251C965C09001F961E /* FakeSafariVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,8 +210,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -251,6 +239,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "21ab8cdf-78fe-4f5f-935e-148cf460246e";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -270,8 +259,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -290,7 +281,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "21ab8cdf-78fe-4f5f-935e-148cf460246e";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -301,11 +294,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftGG/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xky.swiftgg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -314,11 +312,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftGG/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xky.swiftgg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

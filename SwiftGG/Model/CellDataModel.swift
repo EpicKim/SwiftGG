@@ -19,14 +19,14 @@ class CellDataModel: NSObject {
         super.init()
     }
     
-    func encodeWithCoder(aCoder: NSCoder!) {
-        aCoder.encodeObject(title, forKey: "title")
-        aCoder.encodeObject(link, forKey: "link")
+    func encodeWithCoder(_ aCoder: NSCoder!) {
+        aCoder.encode(title, forKey: "title")
+        aCoder.encode(link, forKey: "link")
     }
     
     init(coder aDecoder: NSCoder!) {
-        self.title = aDecoder.decodeObjectForKey("title") as! String
-        self.link = aDecoder.decodeObjectForKey("link") as! String
+        self.title = aDecoder.decodeObject(forKey: "title") as! String
+        self.link = aDecoder.decodeObject(forKey: "link") as! String
     }
 }
 

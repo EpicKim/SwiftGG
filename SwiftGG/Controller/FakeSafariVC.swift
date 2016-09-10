@@ -12,13 +12,13 @@ import WebKit
 // 如果用户使用 iOS 8，则没有 SFSafariViewController，用这个 VC 来加载一个网页
 class FakeSafariViewController: UIViewController {
     
-    var url:NSURL!
-    let webView = WKWebView()
-    let progressView = UIProgressView()
-    let progressKeyPath = "estimatedProgress"
+    var url:URL!
+    private let webView = WKWebView()
+    private let progressView = UIProgressView()
+    private let progressKeyPath = "estimatedProgress"
     
     // MARK: - Init
-    convenience init (URL: NSURL) {
+    convenience init (URL: Foundation.URL) {
         self.init()
         self.url = URL
     }
@@ -32,8 +32,8 @@ class FakeSafariViewController: UIViewController {
         // webView
         webView.expandToFullView()
         webView.frame = view.frame
-        webView.loadRequest(NSURLRequest(URL: url))
-        webView.addObserver(self, forKeyPath: progressKeyPath, options: .New, context: nil) // 加载进度监听
+        webView.load(URLRequest(url: url))
+        webView.addObserver(self, forKeyPath: progressKeyPath, options: .new, context: nil) // 加载进度监听
         view.addSubview(webView)
         
         // progressView
@@ -41,31 +41,31 @@ class FakeSafariViewController: UIViewController {
         webView.addSubview(progressView)
         
         // 屏幕旋转监听
-        NSNotificationCenter.defaultCenter().addObserver(
+        NotificationCenter.default.addObserver(
             self,
             selector: #selector(screenRotate),
-            name: UIDeviceOrientationDidChangeNotification, object: nil)
+            name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         webView.removeObserver(self, forKeyPath: progressKeyPath)
     }
 
     
     
     // MARK: - KVO
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == progressKeyPath {
             
             // 防止进度条突变
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.progressView.setProgress(
                     Float(self.webView.estimatedProgress),
                     animated: true)
             })
             // 渐隐
             if webView.estimatedProgress == 1 {
-                UIView.animateWithDuration(1, animations: {
+                UIView.animate(withDuration: 1, animations: {
                     self.progressView.alpha = 0
                 })
             }
@@ -83,10 +83,10 @@ class FakeSafariViewController: UIViewController {
 
 
 extension UIProgressView {
-    func setFrameBy (vc:UIViewController) {
+    func setFrameBy (_ vc:UIViewController) {
         guard let barFrame = vc.navigationController?.navigationBar.frame else { return }
         let barHeight = barFrame.height + barFrame.origin.y
-        self.frame = CGRectMake(0, barHeight, vc.view.frame.width, 2)
+        self.frame = CGRect(x: 0, y: barHeight, width: vc.view.frame.width, height: 2)
     }
 }
 
