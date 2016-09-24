@@ -1,7 +1,7 @@
 # SwiftGG
 
-####【Xcode 8 GM】
-Swift 3
+####【Xcode 8】
+Swift 3 + Objective-C
 
 ####【App Store】
 App 已上架 AppStore，你可以[点击下载安装](https://itunes.apple.com/app/id1092408981)。
