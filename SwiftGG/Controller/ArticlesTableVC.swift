@@ -19,8 +19,7 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
     private func getKey() -> String { return self.titleText }
     
     
-    
-    // MARK: - Main
+    // MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         // 加载本地数据
         tableData = self.getContentFromDevice(key: self.getKey())
@@ -39,10 +38,11 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
             barButtonSystemItem: .refresh, target: self, action: #selector(requestContent))
     }
     
-    func requestContent() {
+    @objc private func requestContent() {
         guard let url = URL(string: link) else { return }
         webview.loadRequest(URLRequest(url: url))
     }
+    
     
     // MARK: - Web View
     func webViewDidStartLoad(_ webView: UIWebView) {
@@ -63,7 +63,6 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
             oldData: self.getContentFromDevice(key: self.getKey()),
             newData: tableData, key: self.getKey())
     }
-    
     
     
     // MARK: - Table View

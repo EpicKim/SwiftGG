@@ -15,7 +15,7 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
     private let key = "Main"
     
     
-    // MARK: - Main
+    // MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         
         // 加载本地数据
@@ -23,8 +23,7 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
         tableView.reloadData()
         
         // 加载网页
-        guard let url = URL(string: "http://swift.gg/archives/") else { return }
-        webview.loadRequest(URLRequest(url: url))
+        requestContent()
     }
     
     override func viewDidLoad() {
@@ -32,6 +31,10 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
         
         self.title = "SwiftGG"
         webview.delegate = self
+        
+        // 导航栏加入刷新按钮
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .refresh, target: self, action: #selector(requestContent))
         
         // 自动 push 第一行
         let data = self.getContentFromDevice(key: key)
@@ -46,10 +49,21 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    @objc private func requestContent() {
+        guard let url = URL(string: "http://swift.gg/archives/") else { return }
+        webview.loadRequest(URLRequest(url: url))
+    }
     
     
     // MARK: - Web View
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        // title 提示
+        title = "内容刷新中"
+    }
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        // title 提示
+        self.title = "SwiftGG"
         // 从 webview 抓取内容
         let titles = webview.getArchiveTitles()
         let links = webview.getArchiveLinks()
@@ -90,10 +104,10 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
     
     
     // MARK: - 自动 Push
-    func pushArticlesVC(title:String, link:String) {
+    private func pushArticlesVC(title:String, link:String) {
         // get vc
         guard let navi = self.navigationController else { return }
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ArticlesTableVC") as? ArticlesTableVC
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "articlesTableVC") as? ArticlesTableVC
             else { return }
         // set value
         vc.titleText = title

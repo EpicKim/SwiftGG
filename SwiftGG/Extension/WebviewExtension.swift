@@ -30,7 +30,7 @@ extension UIWebView: ExpandableView {
 
 // MARK: -  用于使用 JS 抓取网页
 extension UIWebView {
-    
+
     // 抓取归档链接
     func getArchiveLinks() -> [String] {
         self.stringByEvaluatingJavaScript(from: "var script = document.createElement('script');script.type = 'text/javascript';script.text = \"function getArchiveLinks() {var div = document.getElementsByClassName('archive-list')[0];var atags = div.getElementsByTagName('a');var txt = '';for (x in atags){txt=txt + atags[x].href + ' '};return txt;}\";document.getElementsByTagName('head')[0].appendChild(script);")
