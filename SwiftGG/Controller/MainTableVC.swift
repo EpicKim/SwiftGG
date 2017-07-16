@@ -10,9 +10,9 @@ import UIKit
 
 class MainTableVC: UITableViewController, UIWebViewDelegate {
     
-    private let webview = UIWebView()
-    private var tableData = [CellDataModel]()
-    private let key = "Main"
+    fileprivate let webview = UIWebView()
+    fileprivate var tableData = [CellDataModel]()
+    fileprivate let key = "Main"
     
     
     // MARK: - Life Cycle
@@ -25,6 +25,11 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
         // 导航栏加入刷新按钮
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .refresh, target: self, action: #selector(requestContent))
+        
+        // peek
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        }
         
         // 加载本地数据
         tableData = self.getContentFromDevice(key:key)
@@ -85,24 +90,42 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // deselect
         pushArticlesVC(
-            title: tableData[(indexPath as NSIndexPath).row].title,
-            link: tableData[(indexPath as NSIndexPath).row].link)
+            title: tableData[indexPath.row].title,
+            link: tableData[indexPath.row].link)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
-    
     // MARK: - 自动 Push
-    private func pushArticlesVC(title:String, link:String) {
-        // get vc
-        guard let navi = self.navigationController else { return }
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "articlesTableVC") as? ArticlesTableVC
+    fileprivate func pushArticlesVC(title:String, link:String) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "articlesTableVC") as? ArticlesTableVC
             else { return }
-        // set value
         vc.titleText = title
         vc.link = link
-        // push
-        navi.pushViewController(vc, animated: true)
+
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - Peek
+extension MainTableVC: UIViewControllerPreviewingDelegate {
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "articlesTableVC") as? ArticlesTableVC else {
+            return nil
+        }
+        guard let indexPath = tableView.indexPathForRow(at: location) else {
+            return nil
+        }
+        vc.titleText = tableData[indexPath.row].title
+        vc.link = tableData[indexPath.row].link
+        guard let cell = tableView.cellForRow(at: indexPath) else {return nil}
+        previewingContext.sourceRect = cell.frame
+        return vc
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
     
 }
