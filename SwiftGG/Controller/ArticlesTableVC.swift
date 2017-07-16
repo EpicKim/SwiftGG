@@ -14,9 +14,9 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
     var titleText: String = "" // 这个页面的 title 应有的值，名称区别于 self.title
     var link: String = "" // 这个页面需要访问的链接，据此来获取内容
     
-    private let webview = UIWebView()
-    private var tableData = [CellDataModel]()
-    private func getKey() -> String { return self.titleText }
+    fileprivate let webview = UIWebView()
+    fileprivate var tableData = [CellDataModel]()
+    fileprivate func getKey() -> String { return self.titleText }
     
     
     // MARK: - Life Cycle
@@ -36,6 +36,10 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
         // 导航栏加入刷新按钮
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .refresh, target: self, action: #selector(requestContent))
+        // peek
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        }
     }
     
     @objc private func requestContent() {
@@ -81,20 +85,39 @@ class ArticlesTableVC: UITableViewController, UIWebViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // push
-        guard let url = URL(string: tableData[(indexPath as NSIndexPath).row].link) else { return }
+        guard let url = URL(string: tableData[indexPath.row].link) else { return }
         
-        if #available(iOS 9.0, *) {
+//        if #available(iOS 9.0, *) {
             let safari = SFSafariViewController(url: url)
             self.present(safari, animated: true, completion: nil)
-        } else {
-            let safari = FakeSafariViewController(URL: url)
-            guard let navi = self.navigationController else { return }
-            navi.pushViewController(safari, animated: true)
-        }
+//        } else {
+//            let safari = FakeSafariViewController(URL: url)
+//            guard let navi = self.navigationController else { return }
+//            navi.pushViewController(safari, animated: true)
+//        }
         
-        // deselect
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+}
+
+// MARK: - Peek
+extension ArticlesTableVC: UIViewControllerPreviewingDelegate {
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else {
+            return nil
+        }
+        guard let url = URL(string: tableData[indexPath.row].link) else {
+            return nil
+        }
+        guard let cell = tableView.cellForRow(at: indexPath) else {return nil}
+        previewingContext.sourceRect = cell.frame
+        return SFSafariViewController(url: url)
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        present(viewControllerToCommit, animated: true, completion: nil)
+    }
+    
 }
