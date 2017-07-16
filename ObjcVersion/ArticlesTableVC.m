@@ -14,7 +14,7 @@
 #import <SafariServices/SafariServices.h>
 #import "FakeSafariViewController.h"
 
-@interface ArticlesTableVC ()
+@interface ArticlesTableVC () <UIViewControllerPreviewingDelegate>
 
 @property(nonatomic, strong) UIWebView *webview;
 @property(nonatomic, strong) NSMutableArray *tableData;
@@ -45,8 +45,13 @@
     
     self.title = self.titleText;
     self.webview.delegate = self;
+    
     // 导航栏加入刷新按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(requestContent)];
+    // peek
+    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+        [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
 }
 
 - (void)requestContent {
@@ -108,6 +113,20 @@
     
     // deselect
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Peek
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+    NSString *urlString = ((CellDataModel*) self.tableData[indexPath.row]).link;
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    previewingContext.sourceRect = cell.frame;
+    return [[SFSafariViewController alloc] initWithURL:url];
+}
+
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self presentViewController:viewControllerToCommit animated:YES completion:nil];
 }
 
 @end

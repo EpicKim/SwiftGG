@@ -109,7 +109,6 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
 
 // MARK: - Peek
 extension MainTableVC: UIViewControllerPreviewingDelegate {
-    
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "articlesTableVC") as? ArticlesTableVC else {
             return nil
