@@ -24,16 +24,6 @@
 @implementation MainTableVC
 
 #pragma mark - Life Cycle
--(void)viewWillAppear:(BOOL)animated {
-    
-    // 加载本地数据
-    self.tableData = [[NSMutableArray alloc] initWithArray: [self getContentFromDeviceWithKey:self.key]];
-    [self.tableView reloadData];
-    
-    // 加载网页
-    [self requestContent];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -47,14 +37,12 @@
     // 导航栏加入刷新按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(requestContent)];
     
-    // 自动 push 第一行
-    NSArray* dataArr = [self getContentFromDeviceWithKey: self.key];
-    if (dataArr.count > 0) {
-        CellDataModel *obj = dataArr.firstObject;
-        NSString *title = obj.title;
-        NSString *link = obj.link;
-        [self pushArticlesVCWithTitle:title link:link];
-    }
+    // 加载本地数据
+    self.tableData = [[NSMutableArray alloc] initWithArray: [self getContentFromDeviceWithKey:self.key]];
+    [self.tableView reloadData];
+    
+    // 加载网页
+    [self requestContent];
 }
 
 - (void)requestContent {

@@ -16,16 +16,6 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
     
     
     // MARK: - Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        
-        // 加载本地数据
-        tableData = self.getContentFromDevice(key:key)
-        tableView.reloadData()
-        
-        // 加载网页
-        requestContent()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,13 +26,12 @@ class MainTableVC: UITableViewController, UIWebViewDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .refresh, target: self, action: #selector(requestContent))
         
-        // 自动 push 第一行
-        let data = self.getContentFromDevice(key: key)
-        if data.count > 0 {
-            pushArticlesVC(
-                title: data[0].title,
-                link: data[0].link)
-        }
+        // 加载本地数据
+        tableData = self.getContentFromDevice(key:key)
+        tableView.reloadData()
+        
+        // 加载网页
+        requestContent()
     }
     
     override func didReceiveMemoryWarning() {
