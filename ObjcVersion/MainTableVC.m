@@ -13,7 +13,7 @@
 #import "UIWebView+JS.h"
 #import "NSMutableArray+DataHandle.h"
 
-@interface MainTableVC ()
+@interface MainTableVC () <UIViewControllerPreviewingDelegate>
 
 @property(nonatomic, strong) UIWebView *webview;
 @property(nonatomic, strong) NSMutableArray *tableData;
@@ -36,6 +36,11 @@
     
     // 导航栏加入刷新按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(requestContent)];
+    
+    // peek
+    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+        [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
     
     // 加载本地数据
     self.tableData = [[NSMutableArray alloc] initWithArray: [self getContentFromDeviceWithKey:self.key]];
@@ -99,15 +104,28 @@
 
 #pragma mark - 自动 Push
 - (void)pushArticlesVCWithTitle:(NSString*)title link:(NSString*)link {
-    // get vc
-    UINavigationController *navi = self.navigationController;
     ArticlesTableVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"articlesTableVC"];
-    // set value
     vc.titleText = title;
     vc.link = link;
-    // push
-    [navi pushViewController:vc animated:YES];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
+#pragma mark - Peek
+- (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
+    ArticlesTableVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"articlesTableVC"];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+    vc.titleText = ((CellDataModel*)self.tableData[indexPath.row]).title;
+    vc.link = ((CellDataModel*)self.tableData[indexPath.row]).link;
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    previewingContext.sourceRect = cell.frame;
+    return vc;
+}
+
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
+}
+
 @end
+
